@@ -1,6 +1,6 @@
 {
   "name": "@inntend/convert",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -11,10 +11,7 @@
       "types": "./typings/index.d.ts"
     }
   },
-  "files": [
-    "dist",
-    "typings"
-  ],
+  "files": ["dist", "typings"],
   "sideEffects": false,
   "license": "MIT",
   "engines": {
