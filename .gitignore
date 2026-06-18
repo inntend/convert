@@ -1,0 +1,14 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+.pnpm-debug.log*
+tsconfig.tsbuildinfo
+
+# Dependency directories
+node_modules/
+
+# Temporary files
+coverage/
+dist/
+typings/

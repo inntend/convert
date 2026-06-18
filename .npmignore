@@ -1,0 +1,11 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+.pnpm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Temporary files
+coverage/

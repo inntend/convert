@@ -1,0 +1,58 @@
+{
+  "name": "@inntend/convert",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./typings/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./typings/index.d.ts"
+    }
+  },
+  "files": ["dist", "typings"],
+  "sideEffects": false,
+  "license": "MIT",
+  "engines": {
+    "pnpm": ">=9",
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@11.7.0",
+  "scripts": {
+    "validate": "pnpm run check && pnpm run build:check && pnpm run test:coverage",
+    "check": "biome check --write",
+    "check:ci": "biome ci",
+    "build": "tsc",
+    "build:check": "tsc --noEmit true",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "big.js": "^7.0.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "@eslint/js": "^10.0.1",
+    "@types/big.js": "^7.0.0",
+    "@vitest/coverage-v8": "^4.1.9",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inntend/convert.git"
+  },
+  "keywords": [
+    "esm",
+    "tree-shakeable",
+    "typescript",
+    "units",
+    "conversion",
+    "convert"
+  ],
+  "bugs": {
+    "url": "https://github.com/inntend/convert/issues"
+  },
+  "homepage": "https://github.com/inntend/convert/"
+}
