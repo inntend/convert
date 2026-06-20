@@ -174,9 +174,18 @@ export default class Convert<T extends Units = typeof UnitsLibrary> {
    *      or the source and destination belong to different groups.
    */
   public to(unit: UnitKey<T>, precision?: number): number {
-    if (!this._value || !this._unit)
+    if (!this._value || this._unit === undefined)
       throw Error('Source unit or value are not specified.');
     this.verifyUnit(unit);
+    // Dimensionless ('') converts only to itself (identity) — it has no group,
+    // so it can neither scale nor cross into a dimensioned unit.
+    if (this._unit === '' || unit === '') {
+      if (this._unit !== unit)
+        throw Error(`Unit "${unit}" cannot be converted to "${this._unit}".`);
+      return this._value
+        .round(precision || this._precision, Big.roundHalfUp)
+        .toNumber();
+    }
     const source = this._unitsCache[this._unit];
     const destination = this._unitsCache[unit];
     if (source.group !== destination.group) {
@@ -276,6 +285,7 @@ export default class Convert<T extends Units = typeof UnitsLibrary> {
    * @throws {Error} - If the supplied unit definition is invalid.
    */
   public verifyUnit(unit: string): void {
+    if (unit === '') return; // dimensionless — valid as an identity-only unit
     if (!unit) throw Error(`No unit was specified.`);
     if (!Object.keys(this._unitsCache).includes(unit))
       throw Error(`Unit "${unit}" is not recognized.`);
@@ -288,6 +298,6 @@ export default class Convert<T extends Units = typeof UnitsLibrary> {
    * @returns {boolean} - True if valid, false otherwise.
    */
   public isValid(unit: string): boolean {
-    return !!unit && Object.keys(this._unitsCache).includes(unit);
+    return unit === '' || Object.keys(this._unitsCache).includes(unit);
   }
 }

@@ -60,5 +60,5 @@ it('Attempt to validate existing unit conversion.', () => {
   expect(Convert.isValid('kWh')).toBeTruthy();
   expect(Convert.isValid('C')).toBeTruthy();
   expect(Convert.isValid('invalid unit')).toBeFalsy();
-  expect(Convert.isValid('')).toBeFalsy();
+  expect(Convert.isValid('')).toBeTruthy(); // dimensionless
 });

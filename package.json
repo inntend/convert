@@ -18,7 +18,7 @@
     "pnpm": ">=9",
     "node": ">=20"
   },
-  "packageManager": "pnpm@11.7.0",
+  "packageManager": "pnpm@11.8.0",
   "scripts": {
     "validate": "pnpm run check && pnpm run build:check && pnpm run test:coverage",
     "check": "biome check --write",

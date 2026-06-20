@@ -120,7 +120,7 @@ it('Temperature from 12 F to F converts successfully.', () => {
 
 it('Attempt to verify existing unit conversion.', () => {
   const c = new Convert();
-  expect(() => c.verifyUnit('')).toThrow('No unit was specified.');
+  c.verifyUnit(''); // dimensionless — valid
   expect(() => c.verifyUnit('invalid unit')).toThrow(
     'Unit "invalid unit" is not recognized.',
   );
@@ -130,8 +130,23 @@ it('Attempt to verify existing unit conversion.', () => {
 
 it('Attempt to validate existing unit conversion.', () => {
   const c = new Convert();
-  expect(c.isValid('')).toBeFalsy();
+  expect(c.isValid('')).toBeTruthy(); // dimensionless
   expect(c.isValid('invalid unit')).toBeFalsy();
   expect(c.isValid('kW')).toBeTruthy();
   expect(c.isValid('C')).toBeTruthy();
+});
+
+it('Dimensionless values pass through as identity.', () => {
+  const c = new Convert();
+  expect(c.from(7, '').to('')).toEqual(7);
+  expect(c.from(0, '').to('')).toEqual(0);
+});
+
+it('Dimensionless cannot be converted to or from a dimensioned unit.', () => {
+  expect(() => new Convert().from(1, '').to('kW')).toThrow(
+    'Unit "kW" cannot be converted to "".',
+  );
+  expect(() => new Convert().from(1, 'kW').to('')).toThrow(
+    'Unit "" cannot be converted to "kW".',
+  );
 });
