@@ -18,7 +18,7 @@
     "pnpm": ">=9",
     "node": ">=20"
   },
-  "packageManager": "pnpm@11.8.0",
+  "packageManager": "pnpm@11.9.0",
   "scripts": {
     "validate": "pnpm run check && pnpm run build:check && pnpm run test:coverage",
     "check": "biome check --write",
@@ -29,10 +29,11 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "big.js": "^7.0.1"
+    "big.js": "^7.0.1",
+    "vite": "^8.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.0",
+    "@biomejs/biome": "^2.5.1",
     "@types/big.js": "^7.0.0",
     "@vitest/coverage-v8": "^4.1.9",
     "tsup": "^8.5.1",
